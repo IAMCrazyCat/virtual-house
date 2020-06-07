@@ -1,0 +1,58 @@
+<!--
+Name        : index.html
+Authors     : Abby Carey & Tina Pi
+Assignment  : 3D House Explorer
+Description : This is a 3D house for you to explore!
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>3D House</title>
+	<script src="libraries\three.js"></script>
+	<script src="libraries\three.min.js"></script>
+	<script src="libraries\OBJLoader.js"></script>
+	<script src="libraries\LoadingManager.js"></script>
+	<script src="libraries\OBJMTLLoader.js"></script>
+	<script src="libraries\MTLLoader.js"></script>
+	<script src="libraries\dat.gui.js"></script>
+	<script src="libraries\dat.gui.min.js"></script>
+	<script src="libraries\OrbitControls.js"></script>
+	<script src="libraries\FirstPersonControls.js"></script>
+	<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+</head>
+<body>	
+
+	
+	<div id="container">
+	</div>
+		<script type="x-shader/x-fragment" id="fragmentshader">
+		varying vec2 vUv;
+		// Shader code modified from http://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js
+		void main() {
+			gl_FragColor = vec4( vec3( vUv, 0.5 ), 1.0);
+		}
+	
+	</script>
+
+	<script type="x-shader/x-vertex" id="vertexshader">
+		varying vec2 vUv;
+		void main() {
+			vUv = uv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+		}
+	</script>
+	<script src="house.js"></script>
+</body>
+</html>
